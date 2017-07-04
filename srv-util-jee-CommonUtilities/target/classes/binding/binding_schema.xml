@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE configuration>
+<jaxb:bindings
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:version="2.1">
+
+	<jaxb:globalBindings collectionType="indexed" underscoreBinding="asCharInWord" generateElementProperty="false"
+		fixedAttributeAsConstantProperty="true" choiceContentProperty="true">
+		<xjc:serializable uid="1" />
+		<xjc:simple />
+		<xjc:javaType name="java.util.Date" xmlType="xs:date"
+			adapter="com.telefonica.tran.comarq.cc.adaptadores.XSDAdaptadorDate" />
+		<xjc:javaType name="java.util.Date" xmlType="xs:dateTime"
+			adapter="com.telefonica.tran.comarq.cc.adaptadores.XSDAdaptadorDateTime" />
+		<xjc:javaType name="java.lang.Long" xmlType="xs:integer"
+			adapter="com.telefonica.tran.comarq.cc.adaptadores.XSDAdaptadorLong" />
+		<xjc:treatRestrictionLikeNewType />
+	</jaxb:globalBindings>
+
+	<jaxb:bindings xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		schemaLocation="../xsd/OP_getLanguagesHeader-v3.xsd" node="/xs:schema">
+		<jaxb:schemaBindings>
+			<jaxb:package name="com.telefonica.cana.srv.util.commonutilities.msg.getlanguagesheader" />
+		</jaxb:schemaBindings>
+	</jaxb:bindings>
+</jaxb:bindings>

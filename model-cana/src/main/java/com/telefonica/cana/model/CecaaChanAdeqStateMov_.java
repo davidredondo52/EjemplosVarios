@@ -1,0 +1,24 @@
+package com.telefonica.cana.model;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@Generated(value="Dali", date="2016-09-16T17:42:29.262+0200")
+@StaticMetamodel(CecaaChanAdeqStateMov.class)
+public class CecaaChanAdeqStateMov_ {
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, Timestamp> audiTiCreation;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, Timestamp> audiTiUpdate;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, BigDecimal> bismIdChanAdeqStateMov;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, String> bismObChanAdeqStateMov;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, BigDecimal> paroIdOrgRole;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, BigDecimal> scprIdSalesChannelAdequacy;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, BigDecimal> userIdCreatorParty;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, BigDecimal> userIdUpdaterParty;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, CecadChanAdeqStateReason> cecadChanAdeqStateReason;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, CecarChanAdeqStateRel> cecarChanAdeqStateRel;
+    public static volatile SingularAttribute<CecaaChanAdeqStateMov, ScdepSalesChannelDemand> scdepSalesChannelDemand;
+	public static volatile SingularAttribute<CecaaChanAdeqStateMov, ScprpSalesChannelProposal> scprpSalesChannelProposal;
+}

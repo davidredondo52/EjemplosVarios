@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+    xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="default" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/CANA/UOD_CNALES1_DS_XA</jta-data-source>
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+        <properties>
+            <property name="eclipselink.logging.logger" value="com.telefonica.tran.comarq.cc.trazas.eclipselink.Slf4jSessionLogger"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.weaving.lazy" value="true"/>
+            <property name="eclipselink.weaving" value="static"/>
+            <!-- PROFILING DE ECLIPSELINK -->
+            <!-- <property name="eclipselink.profiler" -->
+            <!-- value="org.eclipse.persistence.tools.profiler.PerformanceProfiler" /> -->
+            <!-- <property name="logProfileSummary" value="true" /> -->
+            <!-- <property name="logProfileSummaryByQuery" value="true" /> -->
+            <!-- <property name="logProfileSummaryByClass" value="none" /> -->
+            <!-- <property name="dontLogProfile" value="false" /> -->
+            <property name="eclipselink.ddl-generation" value="none"/>
+            <property name="eclipselink.session.customizer" value="com.telefonica.tran.comarq.cc.utils.TE_GeneradorUUID"/>
+        </properties>
+    </persistence-unit>
+</persistence>

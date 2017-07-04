@@ -1,0 +1,201 @@
+package com.telefonica.cana.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ * The persistent class for the CnaldDocumentTypeS database table.
+ */
+@Entity
+@NamedQuery(name = "CnaldDocumentType.findAll", query = "SELECT c FROM CnaldDocumentType c")
+@Table(name = "CNALD_DOCUMENT_TYPE")
+public class CnaldDocumentType implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Column(name = "AUDI_TI_CREATION", nullable = false)
+    private Timestamp audiTiCreation;
+
+    @Column(name = "AUDI_TI_UPDATE")
+    private Timestamp audiTiUpdate;
+
+    @Column(columnDefinition = "DATE", name = "DOTY_DA_END_VALIDITY")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date dotyDaEndValidity;
+
+    @Column(columnDefinition = "DATE", name = "DOTY_DA_START_VALIDITY", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date dotyDaStartValidity;
+
+    @Column(name = "DOTY_ID_DOCUMENT_TYPE", nullable = false, precision = 4, unique = true)
+    @GeneratedValue(generator = "CNALD_DOCUMENT_TYPE_DOTYIDDOCUMENTTYPE_GENERATOR")
+    @Id
+    @SequenceGenerator(allocationSize = 1, initialValue = 1, name = "CNALD_DOCUMENT_TYPE_DOTYIDDOCUMENTTYPE_GENERATOR", sequenceName = "CNAL_DOCUMENT_TYPE_SEQ")
+    private Long dotyIdDocumentType;
+
+    @Column(length = 50, name = "LDTY_NA_DOCUMENT_TYPE", nullable = false)
+    private String ldtyNaDocumentType;
+
+    @Column(name = "PROF_ID_PRODUCT_OFFERING", precision = 5)
+    private Long profIdProductOffering;
+
+    @Column(name = "USER_ID_CREATOR_PARTY", nullable = false, precision = 38)
+    private BigDecimal userIdCreatorParty;
+
+    @Column(name = "USER_ID_UPDATER_PARTY", precision = 38)
+    private BigDecimal userIdUpdaterParty;
+
+    @OneToMany(mappedBy = "cnaldDocumentType")
+    private List<CnalpDocumentModel> cnalpDocumentModels;
+    @OneToMany(mappedBy = "cnaldDocumentType", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrDocumentTypeL> cnalrDocumentTypeLs;
+
+    public Timestamp getAudiTiCreation() {
+        if (this.audiTiCreation != null)
+            return (Timestamp) this.audiTiCreation.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiCreation(Timestamp audiTiCreation) {
+        if (audiTiCreation != null)
+            this.audiTiCreation = (Timestamp) audiTiCreation.clone();
+        else
+            this.audiTiCreation = audiTiCreation;
+    }
+
+    public Timestamp getAudiTiUpdate() {
+        if (this.audiTiUpdate != null)
+            return (Timestamp) this.audiTiUpdate.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiUpdate(Timestamp audiTiUpdate) {
+        if (audiTiUpdate != null)
+            this.audiTiUpdate = (Timestamp) audiTiUpdate.clone();
+        else
+            this.audiTiUpdate = audiTiUpdate;
+    }
+
+    public Date getDotyDaEndValidity() {
+        if (this.dotyDaEndValidity != null)
+            return (Date) this.dotyDaEndValidity.clone();
+        else
+            return null;
+    }
+
+    public void setDotyDaEndValidity(Date dotyDaEndValidity) {
+        if (dotyDaEndValidity != null)
+            this.dotyDaEndValidity = (Date) dotyDaEndValidity.clone();
+        else
+            this.dotyDaEndValidity = dotyDaEndValidity;
+    }
+
+    public Date getDotyDaStartValidity() {
+        if (this.dotyDaStartValidity != null)
+            return (Date) this.dotyDaStartValidity.clone();
+        else
+            return null;
+    }
+
+    public void setDotyDaStartValidity(Date dotyDaStartValidity) {
+        if (dotyDaStartValidity != null)
+            this.dotyDaStartValidity = (Date) dotyDaStartValidity.clone();
+        else
+            this.dotyDaStartValidity = dotyDaStartValidity;
+    }
+
+    public Long getDotyIdDocumentType() {
+        return this.dotyIdDocumentType;
+    }
+
+    public void setDotyIdDocumentType(Long dotyIdDocumentType) {
+        this.dotyIdDocumentType = dotyIdDocumentType;
+    }
+
+    public String getLdtyNaDocumentType() {
+        return this.ldtyNaDocumentType;
+    }
+
+    public void setLdtyNaDocumentType(String ldtyNaDocumentType) {
+        this.ldtyNaDocumentType = ldtyNaDocumentType;
+    }
+
+    public Long getProfIdProductOffering() {
+        return this.profIdProductOffering;
+    }
+
+    public void setProfIdProductOffering(Long profIdProductOffering) {
+        this.profIdProductOffering = profIdProductOffering;
+    }
+
+    public BigDecimal getUserIdCreatorParty() {
+        return this.userIdCreatorParty;
+    }
+
+    public void setUserIdCreatorParty(BigDecimal userIdCreatorParty) {
+        this.userIdCreatorParty = userIdCreatorParty;
+    }
+
+    public BigDecimal getUserIdUpdaterParty() {
+        return this.userIdUpdaterParty;
+    }
+
+    public void setUserIdUpdaterParty(BigDecimal userIdUpdaterParty) {
+        this.userIdUpdaterParty = userIdUpdaterParty;
+    }
+
+    public List<CnalpDocumentModel> getCnalpDocumentModels() {
+        return this.cnalpDocumentModels;
+    }
+
+    public void setCnalpDocumentModels(List<CnalpDocumentModel> cnalpDocumentModels) {
+        this.cnalpDocumentModels = cnalpDocumentModels;
+    }
+
+    public void addCnalpDocumentModels(CnalpDocumentModel cnalpDocumentModel) {
+        if (this.cnalpDocumentModels == null)
+            this.cnalpDocumentModels = new ArrayList<CnalpDocumentModel>();
+        this.cnalpDocumentModels.add(cnalpDocumentModel);
+    }
+
+    public void removeCnalpDocumentModels(CnalpDocumentModel cnalpDocumentModelToRemove) {
+        if (cnalpDocumentModelToRemove != null)
+            this.cnalpDocumentModels.remove(cnalpDocumentModelToRemove);
+    }
+
+    public List<CnalrDocumentTypeL> getCnalrDocumentTypeLs() {
+        return this.cnalrDocumentTypeLs;
+    }
+
+    public void setCnalrDocumentTypeLs(List<CnalrDocumentTypeL> cnalrDocumentTypeLs) {
+        this.cnalrDocumentTypeLs = cnalrDocumentTypeLs;
+    }
+
+    public void addCnalrDocumentTypeLs(CnalrDocumentTypeL cnalrDocumentTypeL) {
+        if (this.cnalrDocumentTypeLs == null)
+            this.cnalrDocumentTypeLs = new ArrayList<CnalrDocumentTypeL>();
+        this.cnalrDocumentTypeLs.add(cnalrDocumentTypeL);
+    }
+
+    public void removeCnalrDocumentTypeLs(CnalrDocumentTypeL cnalrDocumentTypeLToRemove) {
+        if (cnalrDocumentTypeLToRemove != null)
+            this.cnalrDocumentTypeLs.remove(cnalrDocumentTypeLToRemove);
+    }
+
+}

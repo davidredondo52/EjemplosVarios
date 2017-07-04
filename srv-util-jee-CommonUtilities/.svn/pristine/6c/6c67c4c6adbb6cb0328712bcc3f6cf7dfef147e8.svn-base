@@ -1,0 +1,6 @@
+#URL OSR (DESARROLLO)
+osr.url=http://enhol067.serv.dev.dc.es.telefonica:34000/registry/uddi/inquiry
+#NOMBRE CACHE
+osr.cache=tlc3-CacheOSR
+
+

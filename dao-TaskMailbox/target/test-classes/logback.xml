@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false">
+    <appender class="ch.qos.logback.core.FileAppender" name="FILE">
+        <file>target/t3-fmk-rules.log.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
+			</pattern>
+        </encoder>
+    </appender>
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="CONSOLE">
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>[%p] %c - %m%n</Pattern>
+        </encoder>
+    </appender>
+    <logger level="INFO" name="com.telefonica"/>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

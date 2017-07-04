@@ -1,0 +1,221 @@
+package com.telefonica.cana.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ * The persistent class for the GewfdWorkflowTaskS database table.
+ */
+@Entity
+@NamedQuery(name = "GewfdWorkflowTask.findAll", query = "SELECT g FROM GewfdWorkflowTask g")
+@Table(name = "GEWFD_WORKFLOW_TASK")
+public class GewfdWorkflowTask implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Column(name = "AUDI_TI_CREATION", nullable = false)
+    private Timestamp audiTiCreation;
+
+    @Column(name = "AUDI_TI_UPDATE")
+    private Timestamp audiTiUpdate;
+
+    @Column(name = "USER_ID_CREATOR_PARTY", nullable = false, precision = 38)
+    private BigDecimal userIdCreatorParty;
+
+    @Column(name = "USER_ID_UPDATER_PARTY", precision = 38)
+    private BigDecimal userIdUpdaterParty;
+
+    @Column(length = 500, name = "WTAL_DS_WORKFLOW_TASK", nullable = false)
+    private String wtalDsWorkflowTask;
+
+    @Column(length = 100, name = "WTAL_NA_WORKFLOW_TASK", nullable = false)
+    private String wtalNaWorkflowTask;
+
+    @Column(columnDefinition = "DATE", name = "WTAS_DA_END_VALIDITY")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date wtasDaEndValidity;
+
+    @Column(columnDefinition = "DATE", name = "WTAS_DA_START_VALIDITY", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date wtasDaStartValidity;
+
+    @Column(name = "WTAS_ID_WORKFLOW_TASK", nullable = false, precision = 4, unique = true)
+    @GeneratedValue(generator = "GEWFD_WORKFLOW_TASK_WTASIDWORKFLOWTASK_GENERATOR")
+    @Id
+    @SequenceGenerator(allocationSize = 1, initialValue = 1, name = "GEWFD_WORKFLOW_TASK_WTASIDWORKFLOWTASK_GENERATOR", sequenceName = "GEWF_WORKFLOW_TASK_SEQ")
+    private Long wtasIdWorkflowTask;
+
+    @OneToMany(mappedBy = "gewfdWorkflowTask")
+    private List<GewfaWorkflowSpecStep> gewfaWorkflowSpecSteps;
+    @OneToMany(mappedBy = "gewfdWorkflowTask")
+    private List<GewfrValidActionTask> gewfrValidActionTasks;
+    @OneToMany(mappedBy = "gewfdWorkflowTask")
+    private List<GewfrWorkflowTaskL> gewfrWorkflowTaskLs;
+
+    public Timestamp getAudiTiCreation() {
+        if (this.audiTiCreation != null)
+            return (Timestamp) this.audiTiCreation.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiCreation(Timestamp audiTiCreation) {
+        if (audiTiCreation != null)
+            this.audiTiCreation = (Timestamp) audiTiCreation.clone();
+        else
+            this.audiTiCreation = audiTiCreation;
+    }
+
+    public Timestamp getAudiTiUpdate() {
+        if (this.audiTiUpdate != null)
+            return (Timestamp) this.audiTiUpdate.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiUpdate(Timestamp audiTiUpdate) {
+        if (audiTiUpdate != null)
+            this.audiTiUpdate = (Timestamp) audiTiUpdate.clone();
+        else
+            this.audiTiUpdate = audiTiUpdate;
+    }
+
+    public BigDecimal getUserIdCreatorParty() {
+        return this.userIdCreatorParty;
+    }
+
+    public void setUserIdCreatorParty(BigDecimal userIdCreatorParty) {
+        this.userIdCreatorParty = userIdCreatorParty;
+    }
+
+    public BigDecimal getUserIdUpdaterParty() {
+        return this.userIdUpdaterParty;
+    }
+
+    public void setUserIdUpdaterParty(BigDecimal userIdUpdaterParty) {
+        this.userIdUpdaterParty = userIdUpdaterParty;
+    }
+
+    public String getWtalDsWorkflowTask() {
+        return this.wtalDsWorkflowTask;
+    }
+
+    public void setWtalDsWorkflowTask(String wtalDsWorkflowTask) {
+        this.wtalDsWorkflowTask = wtalDsWorkflowTask;
+    }
+
+    public String getWtalNaWorkflowTask() {
+        return this.wtalNaWorkflowTask;
+    }
+
+    public void setWtalNaWorkflowTask(String wtalNaWorkflowTask) {
+        this.wtalNaWorkflowTask = wtalNaWorkflowTask;
+    }
+
+    public Date getWtasDaEndValidity() {
+        if (this.wtasDaEndValidity != null)
+            return (Date) this.wtasDaEndValidity.clone();
+        else
+            return null;
+    }
+
+    public void setWtasDaEndValidity(Date wtasDaEndValidity) {
+        if (wtasDaEndValidity != null)
+            this.wtasDaEndValidity = (Date) wtasDaEndValidity.clone();
+        else
+            this.wtasDaEndValidity = wtasDaEndValidity;
+    }
+
+    public Date getWtasDaStartValidity() {
+        if (this.wtasDaStartValidity != null)
+            return (Date) this.wtasDaStartValidity.clone();
+        else
+            return null;
+    }
+
+    public void setWtasDaStartValidity(Date wtasDaStartValidity) {
+        if (wtasDaStartValidity != null)
+            this.wtasDaStartValidity = (Date) wtasDaStartValidity.clone();
+        else
+            this.wtasDaStartValidity = wtasDaStartValidity;
+    }
+
+    public Long getWtasIdWorkflowTask() {
+        return this.wtasIdWorkflowTask;
+    }
+
+    public void setWtasIdWorkflowTask(Long wtasIdWorkflowTask) {
+        this.wtasIdWorkflowTask = wtasIdWorkflowTask;
+    }
+
+    public List<GewfaWorkflowSpecStep> getGewfaWorkflowSpecSteps() {
+        return this.gewfaWorkflowSpecSteps;
+    }
+
+    public void setGewfaWorkflowSpecSteps(List<GewfaWorkflowSpecStep> gewfaWorkflowSpecSteps) {
+        this.gewfaWorkflowSpecSteps = gewfaWorkflowSpecSteps;
+    }
+
+    public void addGewfaWorkflowSpecSteps(GewfaWorkflowSpecStep gewfaWorkflowSpecStep) {
+        if (this.gewfaWorkflowSpecSteps == null)
+            this.gewfaWorkflowSpecSteps = new ArrayList<GewfaWorkflowSpecStep>();
+        this.gewfaWorkflowSpecSteps.add(gewfaWorkflowSpecStep);
+    }
+
+    public void removeGewfaWorkflowSpecSteps(GewfaWorkflowSpecStep gewfaWorkflowSpecStepToRemove) {
+        if (gewfaWorkflowSpecStepToRemove != null)
+            this.gewfaWorkflowSpecSteps.remove(gewfaWorkflowSpecStepToRemove);
+    }
+
+    public List<GewfrValidActionTask> getGewfrValidActionTasks() {
+        return this.gewfrValidActionTasks;
+    }
+
+    public void setGewfrValidActionTasks(List<GewfrValidActionTask> gewfrValidActionTasks) {
+        this.gewfrValidActionTasks = gewfrValidActionTasks;
+    }
+
+    public void addGewfrValidActionTasks(GewfrValidActionTask gewfrValidActionTask) {
+        if (this.gewfrValidActionTasks == null)
+            this.gewfrValidActionTasks = new ArrayList<GewfrValidActionTask>();
+        this.gewfrValidActionTasks.add(gewfrValidActionTask);
+    }
+
+    public void removeGewfrValidActionTasks(GewfrValidActionTask gewfrValidActionTaskToRemove) {
+        if (gewfrValidActionTaskToRemove != null)
+            this.gewfrValidActionTasks.remove(gewfrValidActionTaskToRemove);
+    }
+
+    public List<GewfrWorkflowTaskL> getGewfrWorkflowTaskLs() {
+        return this.gewfrWorkflowTaskLs;
+    }
+
+    public void setGewfrWorkflowTaskLs(List<GewfrWorkflowTaskL> gewfrWorkflowTaskLs) {
+        this.gewfrWorkflowTaskLs = gewfrWorkflowTaskLs;
+    }
+
+    public void addGewfrWorkflowTaskLs(GewfrWorkflowTaskL gewfrWorkflowTaskL) {
+        if (this.gewfrWorkflowTaskLs == null)
+            this.gewfrWorkflowTaskLs = new ArrayList<GewfrWorkflowTaskL>();
+        this.gewfrWorkflowTaskLs.add(gewfrWorkflowTaskL);
+    }
+
+    public void removeGewfrWorkflowTaskLs(GewfrWorkflowTaskL gewfrWorkflowTaskLToRemove) {
+        if (gewfrWorkflowTaskLToRemove != null)
+            this.gewfrWorkflowTaskLs.remove(gewfrWorkflowTaskLToRemove);
+    }
+
+}

@@ -1,0 +1,6 @@
+database.url=jdbc:oracle:thin:@//enhol01v-scan.serv.test.dc.es.telefonica:50001/DTLCO1
+database.username=UOD_CNALES2
+database.password=temporal1
+database.driver=oracle.jdbc.driver.OracleDriver
+database.schema=UMD_CNALES2
+jpa.persistentUnit=cana

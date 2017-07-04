@@ -1,0 +1,441 @@
+package com.telefonica.cana.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.eclipse.persistence.annotations.Convert;
+
+/**
+ * The persistent class for the CnalpTemplateS database table.
+ */
+@Entity
+@NamedQuery(name = "CnalpTemplate.findAll", query = "SELECT c FROM CnalpTemplate c")
+@Table(name = "CNALP_TEMPLATE")
+public class CnalpTemplate implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Column(name = "AUDI_TI_CREATION", nullable = false)
+    private Timestamp audiTiCreation;
+
+    @Column(name = "AUDI_TI_UPDATE")
+    private Timestamp audiTiUpdate;
+
+    @Column(name = "COME_ID_CONTACT_MEDIUM_ORIGIN", precision = 38)
+    private BigDecimal comeIdContactMediumOrigin;
+
+    @Column(length = 50, name = "LETE_NA_TEMPLATE", nullable = false)
+    private String leteNaTemplate;
+
+    @Column(length = 100, name = "LSTE_NA_SUBJECT")
+    private String lsteNaSubject;
+
+    @Column(name = "STPT_IN_CONCATENATION_TYPE", precision = 1)
+    private Long stptInConcatenationType;
+
+    @Column(columnDefinition = "DATE", name = "TPTE_DA_END_VALIDITY")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date tpteDaEndValidity;
+
+    @Column(columnDefinition = "DATE", name = "TPTE_DA_START_VALIDITY", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date tpteDaStartValidity;
+
+    @Column(name = "TPTE_ID_TEMPLATE", nullable = false, precision = 20, unique = true)
+    @GeneratedValue(generator = "CNALP_TEMPLATE_TPTEIDTEMPLATE_GENERATOR")
+    @Id
+    @SequenceGenerator(allocationSize = 1, initialValue = 1, name = "CNALP_TEMPLATE_TPTEIDTEMPLATE_GENERATOR", sequenceName = "CNAL_TEMPLATE_SEQ")
+    private BigDecimal tpteIdTemplate;
+
+    @Column(name = "TPTE_IN_RECIPIENT", nullable = false, precision = 1)
+    private Long tpteInRecipient;
+
+    @Column(name = "TPTE_IN_TEMPLATE_TYPE", nullable = false)
+    @Convert("BigDecimalBooleanConverter")
+    private Boolean tpteInTemplateType;
+
+    @Column(name = "USER_ID_CREATOR_PARTY", nullable = false, precision = 38)
+    private BigDecimal userIdCreatorParty;
+
+    @Column(name = "USER_ID_UPDATER_PARTY", precision = 38)
+    private BigDecimal userIdUpdaterParty;
+
+    @OneToMany(mappedBy = "cnalpTemplate1", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalaLabelSubtemplate> cnalaLabelSubtemplates1;
+    @OneToMany(mappedBy = "cnalpTemplate2", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalaLabelSubtemplate> cnalaLabelSubtemplates2;
+    @OneToMany(mappedBy = "cnalpTemplate1", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalaTemplateLabel> cnalaTemplateLabels1;
+    @OneToMany(mappedBy = "cnalpTemplate2", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalaTemplateLabel> cnalaTemplateLabels2;
+    @JoinColumn(name = "DOFO_ID_DOCUMENT_FORMAT")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CnaldDocumentFormat cnaldDocumentFormat;
+    @JoinColumn(name = "TPTT_ID_TEMPLATE_TYPE")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CnaldTemplateType cnaldTemplateType;
+    @OneToMany(mappedBy = "cnalpTemplate", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrLanguageTemplate> cnalrLanguageTemplates;
+    @OneToMany(mappedBy = "cnalpTemplate", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrTemplateChannelType> cnalrTemplateChannelTypes;
+    @OneToMany(mappedBy = "cnalpTemplate", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrTemplateL> cnalrTemplateLs;
+    @OneToMany(mappedBy = "cnalpTemplate", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrTemplateMarketSegment> cnalrTemplateMarketSegments;
+    @OneToMany(mappedBy = "cnalpTemplate", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrTemplateModel> cnalrTemplateModels;
+    @OneToMany(mappedBy = "cnalpTemplate", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<ScderDemandTypeTemplate> scderDemandTypeTemplates;
+
+    public Timestamp getAudiTiCreation() {
+        if (this.audiTiCreation != null)
+            return (Timestamp) this.audiTiCreation.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiCreation(Timestamp audiTiCreation) {
+        if (audiTiCreation != null)
+            this.audiTiCreation = (Timestamp) audiTiCreation.clone();
+        else
+            this.audiTiCreation = audiTiCreation;
+    }
+
+    public Timestamp getAudiTiUpdate() {
+        if (this.audiTiUpdate != null)
+            return (Timestamp) this.audiTiUpdate.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiUpdate(Timestamp audiTiUpdate) {
+        if (audiTiUpdate != null)
+            this.audiTiUpdate = (Timestamp) audiTiUpdate.clone();
+        else
+            this.audiTiUpdate = audiTiUpdate;
+    }
+
+    public BigDecimal getComeIdContactMediumOrigin() {
+        return this.comeIdContactMediumOrigin;
+    }
+
+    public void setComeIdContactMediumOrigin(BigDecimal comeIdContactMediumOrigin) {
+        this.comeIdContactMediumOrigin = comeIdContactMediumOrigin;
+    }
+
+    public String getLeteNaTemplate() {
+        return this.leteNaTemplate;
+    }
+
+    public void setLeteNaTemplate(String leteNaTemplate) {
+        this.leteNaTemplate = leteNaTemplate;
+    }
+
+    public String getLsteNaSubject() {
+        return this.lsteNaSubject;
+    }
+
+    public void setLsteNaSubject(String lsteNaSubject) {
+        this.lsteNaSubject = lsteNaSubject;
+    }
+
+    public Long getStptInConcatenationType() {
+        return this.stptInConcatenationType;
+    }
+
+    public void setStptInConcatenationType(Long stptInConcatenationType) {
+        this.stptInConcatenationType = stptInConcatenationType;
+    }
+
+    public Date getTpteDaEndValidity() {
+        if (this.tpteDaEndValidity != null)
+            return (Date) this.tpteDaEndValidity.clone();
+        else
+            return null;
+    }
+
+    public void setTpteDaEndValidity(Date tpteDaEndValidity) {
+        if (tpteDaEndValidity != null)
+            this.tpteDaEndValidity = (Date) tpteDaEndValidity.clone();
+        else
+            this.tpteDaEndValidity = tpteDaEndValidity;
+    }
+
+    public Date getTpteDaStartValidity() {
+        if (this.tpteDaStartValidity != null)
+            return (Date) this.tpteDaStartValidity.clone();
+        else
+            return null;
+    }
+
+    public void setTpteDaStartValidity(Date tpteDaStartValidity) {
+        if (tpteDaStartValidity != null)
+            this.tpteDaStartValidity = (Date) tpteDaStartValidity.clone();
+        else
+            this.tpteDaStartValidity = tpteDaStartValidity;
+    }
+
+    public BigDecimal getTpteIdTemplate() {
+        return this.tpteIdTemplate;
+    }
+
+    public void setTpteIdTemplate(BigDecimal tpteIdTemplate) {
+        this.tpteIdTemplate = tpteIdTemplate;
+    }
+
+    public Long getTpteInRecipient() {
+        return this.tpteInRecipient;
+    }
+
+    public void setTpteInRecipient(Long tpteInRecipient) {
+        this.tpteInRecipient = tpteInRecipient;
+    }
+
+    public Boolean getTpteInTemplateType() {
+        return this.tpteInTemplateType;
+    }
+
+    public void setTpteInTemplateType(Boolean tpteInTemplateType) {
+        this.tpteInTemplateType = tpteInTemplateType;
+    }
+
+    public BigDecimal getUserIdCreatorParty() {
+        return this.userIdCreatorParty;
+    }
+
+    public void setUserIdCreatorParty(BigDecimal userIdCreatorParty) {
+        this.userIdCreatorParty = userIdCreatorParty;
+    }
+
+    public BigDecimal getUserIdUpdaterParty() {
+        return this.userIdUpdaterParty;
+    }
+
+    public void setUserIdUpdaterParty(BigDecimal userIdUpdaterParty) {
+        this.userIdUpdaterParty = userIdUpdaterParty;
+    }
+
+    public List<CnalaLabelSubtemplate> getCnalaLabelSubtemplates1() {
+        return this.cnalaLabelSubtemplates1;
+    }
+
+    public void setCnalaLabelSubtemplates1(List<CnalaLabelSubtemplate> cnalaLabelSubtemplates1) {
+        this.cnalaLabelSubtemplates1 = cnalaLabelSubtemplates1;
+    }
+
+    public void addCnalaLabelSubtemplates1(CnalaLabelSubtemplate cnalaLabelSubtemplate) {
+        if (this.cnalaLabelSubtemplates1 == null)
+            this.cnalaLabelSubtemplates1 = new ArrayList<CnalaLabelSubtemplate>();
+        this.cnalaLabelSubtemplates1.add(cnalaLabelSubtemplate);
+    }
+
+    public void removeCnalaLabelSubtemplates1(CnalaLabelSubtemplate cnalaLabelSubtemplateToRemove) {
+        if (cnalaLabelSubtemplateToRemove != null)
+            this.cnalaLabelSubtemplates1.remove(cnalaLabelSubtemplateToRemove);
+    }
+
+    public List<CnalaLabelSubtemplate> getCnalaLabelSubtemplates2() {
+        return this.cnalaLabelSubtemplates2;
+    }
+
+    public void setCnalaLabelSubtemplates2(List<CnalaLabelSubtemplate> cnalaLabelSubtemplates2) {
+        this.cnalaLabelSubtemplates2 = cnalaLabelSubtemplates2;
+    }
+
+    public void addCnalaLabelSubtemplates2(CnalaLabelSubtemplate cnalaLabelSubtemplate) {
+        if (this.cnalaLabelSubtemplates2 == null)
+            this.cnalaLabelSubtemplates2 = new ArrayList<CnalaLabelSubtemplate>();
+        this.cnalaLabelSubtemplates2.add(cnalaLabelSubtemplate);
+    }
+
+    public void removeCnalaLabelSubtemplates2(CnalaLabelSubtemplate cnalaLabelSubtemplateToRemove) {
+        if (cnalaLabelSubtemplateToRemove != null)
+            this.cnalaLabelSubtemplates2.remove(cnalaLabelSubtemplateToRemove);
+    }
+
+    public List<CnalaTemplateLabel> getCnalaTemplateLabels1() {
+        return this.cnalaTemplateLabels1;
+    }
+
+    public void setCnalaTemplateLabels1(List<CnalaTemplateLabel> cnalaTemplateLabels1) {
+        this.cnalaTemplateLabels1 = cnalaTemplateLabels1;
+    }
+
+    public void addCnalaTemplateLabels1(CnalaTemplateLabel cnalaTemplateLabel) {
+        if (this.cnalaTemplateLabels1 == null)
+            this.cnalaTemplateLabels1 = new ArrayList<CnalaTemplateLabel>();
+        this.cnalaTemplateLabels1.add(cnalaTemplateLabel);
+    }
+
+    public void removeCnalaTemplateLabels1(CnalaTemplateLabel cnalaTemplateLabelToRemove) {
+        if (cnalaTemplateLabelToRemove != null)
+            this.cnalaTemplateLabels1.remove(cnalaTemplateLabelToRemove);
+    }
+
+    public List<CnalaTemplateLabel> getCnalaTemplateLabels2() {
+        return this.cnalaTemplateLabels2;
+    }
+
+    public void setCnalaTemplateLabels2(List<CnalaTemplateLabel> cnalaTemplateLabels2) {
+        this.cnalaTemplateLabels2 = cnalaTemplateLabels2;
+    }
+
+    public void addCnalaTemplateLabels2(CnalaTemplateLabel cnalaTemplateLabel) {
+        if (this.cnalaTemplateLabels2 == null)
+            this.cnalaTemplateLabels2 = new ArrayList<CnalaTemplateLabel>();
+        this.cnalaTemplateLabels2.add(cnalaTemplateLabel);
+    }
+
+    public void removeCnalaTemplateLabels2(CnalaTemplateLabel cnalaTemplateLabelToRemove) {
+        if (cnalaTemplateLabelToRemove != null)
+            this.cnalaTemplateLabels2.remove(cnalaTemplateLabelToRemove);
+    }
+
+    public CnaldDocumentFormat getCnaldDocumentFormat() {
+        return this.cnaldDocumentFormat;
+    }
+
+    public void setCnaldDocumentFormat(CnaldDocumentFormat cnaldDocumentFormat) {
+        this.cnaldDocumentFormat = cnaldDocumentFormat;
+    }
+
+    public CnaldTemplateType getCnaldTemplateType() {
+        return this.cnaldTemplateType;
+    }
+
+    public void setCnaldTemplateType(CnaldTemplateType cnaldTemplateType) {
+        this.cnaldTemplateType = cnaldTemplateType;
+    }
+
+    public List<CnalrLanguageTemplate> getCnalrLanguageTemplates() {
+        return this.cnalrLanguageTemplates;
+    }
+
+    public void setCnalrLanguageTemplates(List<CnalrLanguageTemplate> cnalrLanguageTemplates) {
+        this.cnalrLanguageTemplates = cnalrLanguageTemplates;
+    }
+
+    public void addCnalrLanguageTemplates(CnalrLanguageTemplate cnalrLanguageTemplate) {
+        if (this.cnalrLanguageTemplates == null)
+            this.cnalrLanguageTemplates = new ArrayList<CnalrLanguageTemplate>();
+        this.cnalrLanguageTemplates.add(cnalrLanguageTemplate);
+    }
+
+    public void removeCnalrLanguageTemplates(CnalrLanguageTemplate cnalrLanguageTemplateToRemove) {
+        if (cnalrLanguageTemplateToRemove != null)
+            this.cnalrLanguageTemplates.remove(cnalrLanguageTemplateToRemove);
+    }
+
+    public List<CnalrTemplateChannelType> getCnalrTemplateChannelTypes() {
+        return this.cnalrTemplateChannelTypes;
+    }
+
+    public void setCnalrTemplateChannelTypes(List<CnalrTemplateChannelType> cnalrTemplateChannelTypes) {
+        this.cnalrTemplateChannelTypes = cnalrTemplateChannelTypes;
+    }
+
+    public void addCnalrTemplateChannelTypes(CnalrTemplateChannelType cnalrTemplateChannelType) {
+        if (this.cnalrTemplateChannelTypes == null)
+            this.cnalrTemplateChannelTypes = new ArrayList<CnalrTemplateChannelType>();
+        this.cnalrTemplateChannelTypes.add(cnalrTemplateChannelType);
+    }
+
+    public void removeCnalrTemplateChannelTypes(CnalrTemplateChannelType cnalrTemplateChannelTypeToRemove) {
+        if (cnalrTemplateChannelTypeToRemove != null)
+            this.cnalrTemplateChannelTypes.remove(cnalrTemplateChannelTypeToRemove);
+    }
+
+    public List<CnalrTemplateL> getCnalrTemplateLs() {
+        return this.cnalrTemplateLs;
+    }
+
+    public void setCnalrTemplateLs(List<CnalrTemplateL> cnalrTemplateLs) {
+        this.cnalrTemplateLs = cnalrTemplateLs;
+    }
+
+    public void addCnalrTemplateLs(CnalrTemplateL cnalrTemplateL) {
+        if (this.cnalrTemplateLs == null)
+            this.cnalrTemplateLs = new ArrayList<CnalrTemplateL>();
+        this.cnalrTemplateLs.add(cnalrTemplateL);
+    }
+
+    public void removeCnalrTemplateLs(CnalrTemplateL cnalrTemplateLToRemove) {
+        if (cnalrTemplateLToRemove != null)
+            this.cnalrTemplateLs.remove(cnalrTemplateLToRemove);
+    }
+
+    public List<CnalrTemplateMarketSegment> getCnalrTemplateMarketSegments() {
+        return this.cnalrTemplateMarketSegments;
+    }
+
+    public void setCnalrTemplateMarketSegments(List<CnalrTemplateMarketSegment> cnalrTemplateMarketSegments) {
+        this.cnalrTemplateMarketSegments = cnalrTemplateMarketSegments;
+    }
+
+    public void addCnalrTemplateMarketSegments(CnalrTemplateMarketSegment cnalrTemplateMarketSegment) {
+        if (this.cnalrTemplateMarketSegments == null)
+            this.cnalrTemplateMarketSegments = new ArrayList<CnalrTemplateMarketSegment>();
+        this.cnalrTemplateMarketSegments.add(cnalrTemplateMarketSegment);
+    }
+
+    public void removeCnalrTemplateMarketSegments(CnalrTemplateMarketSegment cnalrTemplateMarketSegmentToRemove) {
+        if (cnalrTemplateMarketSegmentToRemove != null)
+            this.cnalrTemplateMarketSegments.remove(cnalrTemplateMarketSegmentToRemove);
+    }
+
+    public List<CnalrTemplateModel> getCnalrTemplateModels() {
+        return this.cnalrTemplateModels;
+    }
+
+    public void setCnalrTemplateModels(List<CnalrTemplateModel> cnalrTemplateModels) {
+        this.cnalrTemplateModels = cnalrTemplateModels;
+    }
+
+    public void addCnalrTemplateModels(CnalrTemplateModel cnalrTemplateModel) {
+        if (this.cnalrTemplateModels == null)
+            this.cnalrTemplateModels = new ArrayList<CnalrTemplateModel>();
+        this.cnalrTemplateModels.add(cnalrTemplateModel);
+    }
+
+    public void removeCnalrTemplateModels(CnalrTemplateModel cnalrTemplateModelToRemove) {
+        if (cnalrTemplateModelToRemove != null)
+            this.cnalrTemplateModels.remove(cnalrTemplateModelToRemove);
+    }
+
+    public List<ScderDemandTypeTemplate> getScderDemandTypeTemplates() {
+        return this.scderDemandTypeTemplates;
+    }
+
+    public void setScderDemandTypeTemplates(List<ScderDemandTypeTemplate> scderDemandTypeTemplates) {
+        this.scderDemandTypeTemplates = scderDemandTypeTemplates;
+    }
+
+    public void addScderDemandTypeTemplates(ScderDemandTypeTemplate scderDemandTypeTemplate) {
+        if (this.scderDemandTypeTemplates == null)
+            this.scderDemandTypeTemplates = new ArrayList<ScderDemandTypeTemplate>();
+        this.scderDemandTypeTemplates.add(scderDemandTypeTemplate);
+    }
+
+    public void removeScderDemandTypeTemplates(ScderDemandTypeTemplate scderDemandTypeTemplateToRemove) {
+        if (scderDemandTypeTemplateToRemove != null)
+            this.scderDemandTypeTemplates.remove(scderDemandTypeTemplateToRemove);
+    }
+
+}

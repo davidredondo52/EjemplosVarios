@@ -1,0 +1,200 @@
+package com.telefonica.cana.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ * The persistent class for the CnaldStatementTypeS database table.
+ */
+@Entity
+@NamedQuery(name = "CnaldStatementType.findAll", query = "SELECT c FROM CnaldStatementType c")
+@Table(name = "CNALD_STATEMENT_TYPE")
+public class CnaldStatementType implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Column(name = "AUDI_TI_CREATION", nullable = false)
+    private Timestamp audiTiCreation;
+
+    @Column(name = "AUDI_TI_UPDATE")
+    private Timestamp audiTiUpdate;
+
+    @Column(length = 50, name = "LSTY_NA_STATEMENT_TYPE", nullable = false)
+    private String lstyNaStatementType;
+
+    @Column(columnDefinition = "DATE", name = "STTP_DA_END_VALIDITY")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date sttpDaEndValidity;
+
+    @Column(columnDefinition = "DATE", name = "STTP_DA_START_VALIDITY", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date sttpDaStartValidity;
+
+    @Column(name = "STTP_ID_STATEMENT_TYPE", nullable = false, precision = 4, unique = true)
+    @GeneratedValue(generator = "CNALD_STATEMENT_TYPE_STTPIDSTATEMENTTYPE_GENERATOR")
+    @Id
+    @SequenceGenerator(allocationSize = 1, initialValue = 1, name = "CNALD_STATEMENT_TYPE_STTPIDSTATEMENTTYPE_GENERATOR", sequenceName = "CNAL_STATEMENT_TYPE_SEQ")
+    private Long sttpIdStatementType;
+
+    @Column(name = "STTP_IN_RECIPIENT", nullable = false, precision = 1)
+    private Long sttpInRecipient;
+
+    @Column(name = "USER_ID_CREATOR_PARTY", nullable = false, precision = 38)
+    private BigDecimal userIdCreatorParty;
+
+    @Column(name = "USER_ID_UPDATER_PARTY", precision = 38)
+    private BigDecimal userIdUpdaterParty;
+
+    @OneToMany(mappedBy = "cnaldStatementType")
+    private List<CnalpStatementModel> cnalpStatementModels;
+    @OneToMany(mappedBy = "cnaldStatementType")
+    private List<CnalrStatementTypeL> cnalrStatementTypeLs;
+
+    public Timestamp getAudiTiCreation() {
+        if (this.audiTiCreation != null)
+            return (Timestamp) this.audiTiCreation.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiCreation(Timestamp audiTiCreation) {
+        if (audiTiCreation != null)
+            this.audiTiCreation = (Timestamp) audiTiCreation.clone();
+        else
+            this.audiTiCreation = audiTiCreation;
+    }
+
+    public Timestamp getAudiTiUpdate() {
+        if (this.audiTiUpdate != null)
+            return (Timestamp) this.audiTiUpdate.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiUpdate(Timestamp audiTiUpdate) {
+        if (audiTiUpdate != null)
+            this.audiTiUpdate = (Timestamp) audiTiUpdate.clone();
+        else
+            this.audiTiUpdate = audiTiUpdate;
+    }
+
+    public String getLstyNaStatementType() {
+        return this.lstyNaStatementType;
+    }
+
+    public void setLstyNaStatementType(String lstyNaStatementType) {
+        this.lstyNaStatementType = lstyNaStatementType;
+    }
+
+    public Date getSttpDaEndValidity() {
+        if (this.sttpDaEndValidity != null)
+            return (Date) this.sttpDaEndValidity.clone();
+        else
+            return null;
+    }
+
+    public void setSttpDaEndValidity(Date sttpDaEndValidity) {
+        if (sttpDaEndValidity != null)
+            this.sttpDaEndValidity = (Date) sttpDaEndValidity.clone();
+        else
+            this.sttpDaEndValidity = sttpDaEndValidity;
+    }
+
+    public Date getSttpDaStartValidity() {
+        if (this.sttpDaStartValidity != null)
+            return (Date) this.sttpDaStartValidity.clone();
+        else
+            return null;
+    }
+
+    public void setSttpDaStartValidity(Date sttpDaStartValidity) {
+        if (sttpDaStartValidity != null)
+            this.sttpDaStartValidity = (Date) sttpDaStartValidity.clone();
+        else
+            this.sttpDaStartValidity = sttpDaStartValidity;
+    }
+
+    public Long getSttpIdStatementType() {
+        return this.sttpIdStatementType;
+    }
+
+    public void setSttpIdStatementType(Long sttpIdStatementType) {
+        this.sttpIdStatementType = sttpIdStatementType;
+    }
+
+    public Long getSttpInRecipient() {
+        return this.sttpInRecipient;
+    }
+
+    public void setSttpInRecipient(Long sttpInRecipient) {
+        this.sttpInRecipient = sttpInRecipient;
+    }
+
+    public BigDecimal getUserIdCreatorParty() {
+        return this.userIdCreatorParty;
+    }
+
+    public void setUserIdCreatorParty(BigDecimal userIdCreatorParty) {
+        this.userIdCreatorParty = userIdCreatorParty;
+    }
+
+    public BigDecimal getUserIdUpdaterParty() {
+        return this.userIdUpdaterParty;
+    }
+
+    public void setUserIdUpdaterParty(BigDecimal userIdUpdaterParty) {
+        this.userIdUpdaterParty = userIdUpdaterParty;
+    }
+
+    public List<CnalpStatementModel> getCnalpStatementModels() {
+        return this.cnalpStatementModels;
+    }
+
+    public void setCnalpStatementModels(List<CnalpStatementModel> cnalpStatementModels) {
+        this.cnalpStatementModels = cnalpStatementModels;
+    }
+
+    public void addCnalpStatementModels(CnalpStatementModel cnalpStatementModel) {
+        if (this.cnalpStatementModels == null)
+            this.cnalpStatementModels = new ArrayList<CnalpStatementModel>();
+        this.cnalpStatementModels.add(cnalpStatementModel);
+    }
+
+    public void removeCnalpStatementModels(CnalpStatementModel cnalpStatementModelToRemove) {
+        if (cnalpStatementModelToRemove != null)
+            this.cnalpStatementModels.remove(cnalpStatementModelToRemove);
+    }
+
+    public List<CnalrStatementTypeL> getCnalrStatementTypeLs() {
+        return this.cnalrStatementTypeLs;
+    }
+
+    public void setCnalrStatementTypeLs(List<CnalrStatementTypeL> cnalrStatementTypeLs) {
+        this.cnalrStatementTypeLs = cnalrStatementTypeLs;
+    }
+
+    public void addCnalrStatementTypeLs(CnalrStatementTypeL cnalrStatementTypeL) {
+        if (this.cnalrStatementTypeLs == null)
+            this.cnalrStatementTypeLs = new ArrayList<CnalrStatementTypeL>();
+        this.cnalrStatementTypeLs.add(cnalrStatementTypeL);
+    }
+
+    public void removeCnalrStatementTypeLs(CnalrStatementTypeL cnalrStatementTypeLToRemove) {
+        if (cnalrStatementTypeLToRemove != null)
+            this.cnalrStatementTypeLs.remove(cnalrStatementTypeLToRemove);
+    }
+
+}

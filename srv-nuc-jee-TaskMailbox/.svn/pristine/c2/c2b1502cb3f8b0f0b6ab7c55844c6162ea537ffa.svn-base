@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1"
+    xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eclipse.org/eclipselink/xsds/persistence/orm http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_1.xsd">
+    <persistence-unit-metadata>
+        <persistence-unit-defaults>
+            <schema>UMD_CNALES3</schema>
+        </persistence-unit-defaults>
+    </persistence-unit-metadata>
+    <!-- Conversores -->
+    <converter
+        class="com.telefonica.tran.comarq.cc.utils.DateTimeConverter" name="DateTimeConverter"/>
+    <converter
+        class="com.telefonica.tran.comarq.cc.utils.TimestampConverter" name="TimestampConverter"/>
+    <converter
+        class="com.telefonica.tran.comarq.cc.utils.BigDecimalBooleanConverter" name="BigDecimalBooleanConverter"/>
+    <converter
+        class="com.telefonica.tran.comarq.cc.utils.XMLTypeConverter" name="XMLTypeConverter"/>
+</entity-mappings>

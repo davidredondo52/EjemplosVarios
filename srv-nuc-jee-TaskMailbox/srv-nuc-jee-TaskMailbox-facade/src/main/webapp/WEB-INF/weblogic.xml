@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.7/weblogic-web-app.xsd">
+	<weblogic-version>12.2.1</weblogic-version>
+	<context-root>srv-nuc-jee-TaskMailbox</context-root>
+	<container-descriptor>
+		<prefer-application-packages>
+			<package-name>org.hibernate.validator</package-name>
+			<package-name>org.slf4j</package-name>
+			<package-name>com.google.common.*</package-name>
+			<package-name>javax.validation.*</package-name>
+			<package-name>org.aopalliance.aop.*</package-name>
+			<package-name>org.aopalliance.intercept.*</package-name>
+			<package-name>org.apache.commons.*</package-name>
+			<package-name>org.jboss.logging.*</package-name>
+			<package-name>org.joda.time.*</package-name>
+			<package-name>com.fasterxml.classmate.*</package-name>
+		</prefer-application-packages>
+	</container-descriptor>
+	<wl-dispatch-policy>WM_CANA</wl-dispatch-policy>
+</weblogic-web-app>

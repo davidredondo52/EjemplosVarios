@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:cache="http://www.springframework.org/schema/cache"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd   http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+    <!-- Componentes comunes -->
+    <import resource="classpath*:META-INF/spring/lib-jee-ServiceAdapters-context.xml"/>
+    <import resource="classpath*:META-INF/spring/*dao-*.xml"/>
+    <context:component-scan base-package="com.telefonica.cana.srv.nuc.taskmailbox.service.impl"/>
+    <aop:aspectj-autoproxy/>
+    <bean
+        class="com.telefonica.tran.comarq.cc.paginacion.aspect.OrderMetadataAnnotationsAspect"
+        id="orderMetadataAnnotationsAspect" p:order="1"/>
+    <bean
+        class="com.telefonica.tran.comarq.cc.paginacion.aspect.PageMetadataAnnotationsAspect" id="pageMetadataValidator"/>
+    <bean
+        class="com.telefonica.tran.comarq.cc.paginacion.aspect.SearchMetadataAnnotationsAspect" id="searchMetadataValidator"/>
+    <bean
+        class="com.telefonica.tran.comarq.cc.validation.CustomMethodValidationPostProcessor"
+        id="methodPostProcessor" p:errorCode="ERR-VAL-000"/>
+    <bean
+        class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" id="validator"/>
+    <bean
+        class="com.telefonica.tran.comarq.cc.spring.cache.CoherenceCacheManager"
+        id="coherenceCacheManager" lazy-init="true">
+        <property name="cacheNames">
+            <set>
+                <value>CACHE_NUC_BAJA_CANA</value>
+                <value>CACHE_NUC_MEDIA_CANA</value>
+                <value>CACHE_NUC_ALTA_CANA</value>
+            </set>
+        </property>
+    </bean>
+    <cache:annotation-driven cache-manager="coherenceCacheManager"/>
+</beans>

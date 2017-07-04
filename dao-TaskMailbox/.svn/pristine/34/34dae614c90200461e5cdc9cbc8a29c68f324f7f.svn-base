@@ -1,0 +1,208 @@
+package com.telefonica.cana.dao.taskmailbox.repository.extension.impl;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.telefonica.cana.dao.taskmailbox.repository.CnalaTaskMailboxRepository;
+import com.telefonica.cana.dao.taskmailbox.repository.TaskMailboxSpecifications;
+import com.telefonica.cana.dao.taskmailbox.repository.extension.CnalaTaskMailboxRepositoryExtension;
+import com.telefonica.cana.model.CnalaTaskMailbox;
+
+/** 
+ * Implementaon de las pruebas de la entidad
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:META-INF/spring/dao-test-context.xml" })
+public class CnalaTaskMailboxRepositoryExtensionTest {
+    @Autowired
+    private CnalaTaskMailboxRepositoryExtension cnalaTaskMailboxRepositoryImpl;
+    
+    @Autowired
+    private CnalaTaskMailboxRepository cnalaTaskMailboxRepository;
+
+    @PersistenceContext
+    private EntityManager em;
+
+    /**
+     * Prueba para el metodo de especificacion
+     */
+    @Test
+    @Transactional
+    public void findTaskMailbox_SortTest() {
+
+        Specification<CnalaTaskMailbox> byId = TaskMailboxSpecifications.byId(new BigDecimal(0), "A");
+
+        Specification<CnalaTaskMailbox> byNameLike = TaskMailboxSpecifications.byNameLike("A");
+
+        Specification<CnalaTaskMailbox> byIdOrganizationRole = TaskMailboxSpecifications
+                .byIdOrganizationRole(new BigDecimal(0));
+
+        Specification<CnalaTaskMailbox> byIdFunctionalPool = TaskMailboxSpecifications
+                .byIdFunctionalPool(new BigDecimal(0));
+
+        Specification<CnalaTaskMailbox> byIdDistributionCriteria = TaskMailboxSpecifications
+                .byIdDistributionCriteria(new Integer(0));
+
+        Specification<CnalaTaskMailbox> byIdRule = TaskMailboxSpecifications.byIdRule(new BigDecimal(0));
+
+        Specification<CnalaTaskMailbox> byCode = TaskMailboxSpecifications.byCode("A");
+
+        Specification<CnalaTaskMailbox> byRangeDate = TaskMailboxSpecifications.byRangeDate(new Date((long) 0),
+                new Date((long) 0));
+
+        Specification<CnalaTaskMailbox> byShowAllLanguages = TaskMailboxSpecifications.byShowAllLanguages(new Boolean(
+                true));
+
+        List<CnalaTaskMailbox> result = cnalaTaskMailboxRepositoryImpl.findTaskMailbox(Specifications.where(byId)
+
+        .and(byNameLike)
+
+        .and(byIdOrganizationRole)
+
+        .and(byIdFunctionalPool)
+
+        .and(byIdDistributionCriteria)
+
+        .and(byIdRule)
+
+        .and(byCode)
+
+        .and(byRangeDate)
+
+        .and(byShowAllLanguages), new Sort(Sort.Direction.ASC, "audiTiCreation"));
+        assertThat(result).isEmpty();
+
+    }
+
+    /**
+     * Prueba para el metodo de especificacion
+     */
+    @Test
+    @Transactional
+    public void findFullTaskMailbox_PageSortTest() {
+
+        Specification<CnalaTaskMailbox> byId = TaskMailboxSpecifications.byId(new BigDecimal(0), "A");
+
+        Specification<CnalaTaskMailbox> byCode = TaskMailboxSpecifications.byCode("A");
+
+        Specification<CnalaTaskMailbox> byNameLike = TaskMailboxSpecifications.byNameLike("A");
+
+        Specification<CnalaTaskMailbox> byRangeDate = TaskMailboxSpecifications.byRangeDate(new Date((long) 0),
+                new Date((long) 0));
+
+        Specification<CnalaTaskMailbox> byIdFunctionalPool = TaskMailboxSpecifications
+                .byIdFunctionalPool(new BigDecimal(0));
+
+        Specification<CnalaTaskMailbox> byIdOrganizationRole = TaskMailboxSpecifications
+                .byIdOrganizationRole(new BigDecimal(0));
+
+        Specification<CnalaTaskMailbox> byShowAllLanguages = TaskMailboxSpecifications.byShowAllLanguages(new Boolean(
+                true));
+
+        Page<CnalaTaskMailbox> result = cnalaTaskMailboxRepositoryImpl.findFullTaskMailbox(Specifications.where(byId)
+
+        .and(byCode)
+
+        .and(byNameLike)
+
+        .and(byRangeDate)
+
+        .and(byIdFunctionalPool)
+
+        .and(byIdOrganizationRole)
+
+        .and(byShowAllLanguages), new PageRequest(10, 10), new Sort.Order(Sort.Direction.ASC, "audiTiCreation"));
+
+        assertThat(result).isEmpty();
+
+    }
+
+    /**
+     * Prueba para el metodo de especificacion
+     */
+    @Test
+    @Transactional
+    public void findTaskMailboxByEnterpriseFunctionTest() {
+
+        Specification<CnalaTaskMailbox> byId = TaskMailboxSpecifications.byId(new BigDecimal(0), "A");
+
+        Specification<CnalaTaskMailbox> byNameLike = TaskMailboxSpecifications.byNameLike("A");
+
+        Specification<CnalaTaskMailbox> byIdFunctionalPool = TaskMailboxSpecifications
+                .byIdFunctionalPool(new BigDecimal(0));
+
+        Specification<CnalaTaskMailbox> byIdEnterpriseFunction = TaskMailboxSpecifications
+                .byIdEnterpriseFunction(new Integer(0));
+
+        List<CnalaTaskMailbox> result = cnalaTaskMailboxRepositoryImpl
+                .findTaskMailboxByEnterpriseFunction(Specifications.where(byId)
+
+                .and(byNameLike)
+
+                .and(byIdFunctionalPool)
+
+                .and(byIdEnterpriseFunction));
+
+    }
+
+    /**
+     * Prueba para el metodo de especificacion
+     */
+    @Test
+    @Transactional
+    public void findTaskMailboxOperators_PageSortTest() {
+
+        Specification<CnalaTaskMailbox> byIdFunctionalPool = TaskMailboxSpecifications
+                .byIdFunctionalPool(new BigDecimal(0));
+
+        Specification<CnalaTaskMailbox> byIdOrganizationRole = TaskMailboxSpecifications
+                .byIdOrganizationRole(new BigDecimal(0));
+
+        Slice<CnalaTaskMailbox> result = cnalaTaskMailboxRepositoryImpl.findTaskMailboxOperators(
+                Specifications.where(byIdFunctionalPool)
+
+                .and(byIdOrganizationRole), new PageRequest(10, 10), new Sort.Order(Sort.Direction.ASC,
+                        "audiTiCreation"));
+
+        assertThat(result).isEmpty();
+
+    }
+
+    /**
+     * Prueba para el metodo de especificacion
+     */
+    @Test
+    @Transactional
+    public void findTaskMailboxAccess_PageSortTest() {
+
+
+        List<BigDecimal> listParoIdFunctionalRole = new ArrayList<BigDecimal>();
+        listParoIdFunctionalRole.add(BigDecimal.ONE);
+        Page<CnalaTaskMailbox> a = cnalaTaskMailboxRepository.findTasksMailboxesManagerbyListIdFuncRole(
+                listParoIdFunctionalRole, 
+                new PageRequest(10, 10));
+        
+        assertThat(a).isEmpty();
+
+    }
+}

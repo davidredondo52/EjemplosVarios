@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:repository="http://www.springframework.org/schema/data/repository"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd   http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.7.xsd   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+    <!-- Componentes comunes -->
+    <import resource="classpath*:META-INF/spring/lib-jee-Exception-context.xml"/>
+    <context:component-scan base-package="com.telefonica.coco.lib.propertysources.filesystem"/>
+    <bean
+        class="com.telefonica.tran.comarq.cc.trazas.aop.TE_TrazadoMinimo"
+        id="te_TrazadoMinimo" p:prettyPrint="false"/>
+    <import resource="classpath:META-INF/spring/srv-nuc-jee-TaskMailbox-service-context.xml"/>
+    <import resource="classpath:META-INF/spring/lib-jee-Test-database-context.xml"/>
+</beans>

@@ -1,0 +1,38 @@
+package com.telefonica.cana.model;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@Generated(value="Dali", date="2016-09-16T17:42:30.687+0200")
+@StaticMetamodel(ScdepSalesChannelDemand.class)
+public class ScdepSalesChannelDemand_ {
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Timestamp> audiTiCreation;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Timestamp> audiTiUpdate;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, String> buinCoChannelDemand;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, String> buinDsChannelDemand;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, BigDecimal> buinIdSalesChannelDemand;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Timestamp> buinTiEndInterac;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Timestamp> buinTiStartInterac;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, BigDecimal> paroIdLawEnteOrgRole;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, BigDecimal> paroIdPetitionerOrgRole;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Date> scdeDaDesired;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, String> scdeDsObjetive;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, String> scdeDsToolsImpact;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Long> scdeInPriority;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, String> scdeNaChannelDemand;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Long> scdeQuDurationEvent;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, Long> scdeQuTargetPublic;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, BigDecimal> userIdCreatorParty;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, BigDecimal> userIdUpdaterParty;
+	public static volatile SingularAttribute<ScdepSalesChannelDemand, ScdedChannelDemandType> scdedChannelDemandType;
+	public static volatile ListAttribute<ScdepSalesChannelDemand, ScderCustomerImpact> scderCustomerImpacts;
+	public static volatile ListAttribute<ScdepSalesChannelDemand, ScderDemandChannelType> scderDemandChannelTypes;
+	public static volatile ListAttribute<ScdepSalesChannelDemand, ScderDemandMarketSegment> scderDemandMarketSegments;
+	public static volatile ListAttribute<ScdepSalesChannelDemand, ScderDemandSalesChannel> scderDemandSalesChannels;
+	public static volatile ListAttribute<ScdepSalesChannelDemand, ScprpSalesChannelProposal> scprpSalesChannelProposals;
+}

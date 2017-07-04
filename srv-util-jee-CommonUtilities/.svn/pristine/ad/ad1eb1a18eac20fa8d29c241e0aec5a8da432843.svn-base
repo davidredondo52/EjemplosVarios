@@ -1,0 +1,5 @@
+module.application=cana
+module.type=srv-util-jee
+module.name=srv-util-jee-CommonUtilities
+
+TelcoPropertySource.filesystem.root=src/test/resources/coco/property-sources

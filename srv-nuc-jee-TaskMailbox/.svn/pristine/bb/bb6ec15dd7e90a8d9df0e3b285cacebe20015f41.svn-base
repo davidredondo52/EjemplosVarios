@@ -1,0 +1,5 @@
+module.application=cana
+module.type=srv-nuc-jee
+module.name=srv-nuc-jee-TaskMailbox
+
+TelcoPropertySource.filesystem.root=src/test/resources/coco/property-sources

@@ -1,0 +1,265 @@
+package com.telefonica.cana.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.eclipse.persistence.annotations.Convert;
+
+/**
+ * The persistent class for the PrdedUserTaskSpecS database table.
+ */
+@Entity
+@NamedQuery(name = "PrdedUserTaskSpec.findAll", query = "SELECT p FROM PrdedUserTaskSpec p")
+@Table(name = "PRDED_USER_TASK_SPEC")
+public class PrdedUserTaskSpec implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Column(name = "AUDI_TI_CREATION", nullable = false)
+    private Timestamp audiTiCreation;
+
+    @Column(name = "AUDI_TI_UPDATE")
+    private Timestamp audiTiUpdate;
+
+    @Column(name = "BSES_DA_END_VALIDITY")
+    private Timestamp bsesDaEndValidity;
+
+    @Column(name = "BSES_DA_START_VALIDITY", nullable = false)
+    private Timestamp bsesDaStartValidity;
+
+    @Column(length = 500, name = "BSES_DS_BUSINESS_SERVICE", nullable = false)
+    private String bsesDsBusinessService;
+
+    @Column(name = "BSES_ID_USER_TASK_SPEC", nullable = false, precision = 6, unique = true)
+    @GeneratedValue(generator = "PRDED_USER_TASK_SPEC_BSESIDUSERTASKSPEC_GENERATOR")
+    @Id
+    @SequenceGenerator(allocationSize = 1, initialValue = 1, name = "PRDED_USER_TASK_SPEC_BSESIDUSERTASKSPEC_GENERATOR", sequenceName = "PRDE_USER_TASK_SPEC_SEQ")
+    private Long bsesIdUserTaskSpec;
+
+    @Column(length = 100, name = "BSES_NA_BUSINESS_SERVICE", nullable = false)
+    private String bsesNaBusinessService;
+
+    @Column(name = "GENA_ID_APPLICATION", nullable = false, precision = 3)
+    private Long genaIdApplication;
+
+    @Column(name = "PROS_ID_PROCESS_SPECIFICATION", nullable = false, precision = 4)
+    private Long prosIdProcessSpecification;
+
+    @Column(name = "USER_ID_CREATOR_PARTY", nullable = false, precision = 38)
+    private BigDecimal userIdCreatorParty;
+
+    @Column(name = "USER_ID_UPDATER_PARTY", precision = 38)
+    private BigDecimal userIdUpdaterParty;
+
+    @Column(name = "UTSP_IN_MANAGE_BETWEEN_AREAS", nullable = false, precision = 1)
+    private Long utspInManageBetweenAreas;
+
+    @Column(name = "UTSP_IN_SEND_UP", nullable = false)
+    @Convert("BigDecimalBooleanConverter")
+    private Boolean utspInSendUp;
+
+    @Column(length = 100, name = "UTSP_NA_TECHNICAL_UT", nullable = false)
+    private String utspNaTechnicalUt;
+
+    @OneToOne(mappedBy = "prdedUserTaskSpec")
+    private PrdeaUtSpecAlarm prdeaUtSpecAlarm;
+    @OneToMany(mappedBy = "prdedUserTaskSpec", cascade = CascadeType.PERSIST)
+    private List<PrderUserTaskSpecMailbox> prderUserTaskSpecMailboxs;
+    @OneToMany(mappedBy = "prdedUserTaskSpec")
+    private List<ProcpUserTaskManagement> procpUserTaskManagements;
+
+    public Timestamp getAudiTiCreation() {
+        if (this.audiTiCreation != null)
+            return (Timestamp) this.audiTiCreation.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiCreation(Timestamp audiTiCreation) {
+        if (audiTiCreation != null)
+            this.audiTiCreation = (Timestamp) audiTiCreation.clone();
+        else
+            this.audiTiCreation = audiTiCreation;
+    }
+
+    public Timestamp getAudiTiUpdate() {
+        if (this.audiTiUpdate != null)
+            return (Timestamp) this.audiTiUpdate.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiUpdate(Timestamp audiTiUpdate) {
+        if (audiTiUpdate != null)
+            this.audiTiUpdate = (Timestamp) audiTiUpdate.clone();
+        else
+            this.audiTiUpdate = audiTiUpdate;
+    }
+
+    public Timestamp getBsesDaEndValidity() {
+        if (this.bsesDaEndValidity != null)
+            return (Timestamp) this.bsesDaEndValidity.clone();
+        else
+            return null;
+    }
+
+    public void setBsesDaEndValidity(Timestamp bsesDaEndValidity) {
+        if (bsesDaEndValidity != null)
+            this.bsesDaEndValidity = (Timestamp) bsesDaEndValidity.clone();
+        else
+            this.bsesDaEndValidity = bsesDaEndValidity;
+    }
+
+    public Timestamp getBsesDaStartValidity() {
+        if (this.bsesDaStartValidity != null)
+            return (Timestamp) this.bsesDaStartValidity.clone();
+        else
+            return null;
+    }
+
+    public void setBsesDaStartValidity(Timestamp bsesDaStartValidity) {
+        if (bsesDaStartValidity != null)
+            this.bsesDaStartValidity = (Timestamp) bsesDaStartValidity.clone();
+        else
+            this.bsesDaStartValidity = bsesDaStartValidity;
+    }
+
+    public String getBsesDsBusinessService() {
+        return this.bsesDsBusinessService;
+    }
+
+    public void setBsesDsBusinessService(String bsesDsBusinessService) {
+        this.bsesDsBusinessService = bsesDsBusinessService;
+    }
+
+    public Long getBsesIdUserTaskSpec() {
+        return this.bsesIdUserTaskSpec;
+    }
+
+    public void setBsesIdUserTaskSpec(Long bsesIdUserTaskSpec) {
+        this.bsesIdUserTaskSpec = bsesIdUserTaskSpec;
+    }
+
+    public String getBsesNaBusinessService() {
+        return this.bsesNaBusinessService;
+    }
+
+    public void setBsesNaBusinessService(String bsesNaBusinessService) {
+        this.bsesNaBusinessService = bsesNaBusinessService;
+    }
+
+    public Long getGenaIdApplication() {
+        return this.genaIdApplication;
+    }
+
+    public void setGenaIdApplication(Long genaIdApplication) {
+        this.genaIdApplication = genaIdApplication;
+    }
+
+    public Long getProsIdProcessSpecification() {
+        return this.prosIdProcessSpecification;
+    }
+
+    public void setProsIdProcessSpecification(Long prosIdProcessSpecification) {
+        this.prosIdProcessSpecification = prosIdProcessSpecification;
+    }
+
+    public BigDecimal getUserIdCreatorParty() {
+        return this.userIdCreatorParty;
+    }
+
+    public void setUserIdCreatorParty(BigDecimal userIdCreatorParty) {
+        this.userIdCreatorParty = userIdCreatorParty;
+    }
+
+    public BigDecimal getUserIdUpdaterParty() {
+        return this.userIdUpdaterParty;
+    }
+
+    public void setUserIdUpdaterParty(BigDecimal userIdUpdaterParty) {
+        this.userIdUpdaterParty = userIdUpdaterParty;
+    }
+
+    public Long getUtspInManageBetweenAreas() {
+        return this.utspInManageBetweenAreas;
+    }
+
+    public void setUtspInManageBetweenAreas(Long utspInManageBetweenAreas) {
+        this.utspInManageBetweenAreas = utspInManageBetweenAreas;
+    }
+
+    public Boolean getUtspInSendUp() {
+        return this.utspInSendUp;
+    }
+
+    public void setUtspInSendUp(Boolean utspInSendUp) {
+        this.utspInSendUp = utspInSendUp;
+    }
+
+    public String getUtspNaTechnicalUt() {
+        return this.utspNaTechnicalUt;
+    }
+
+    public void setUtspNaTechnicalUt(String utspNaTechnicalUt) {
+        this.utspNaTechnicalUt = utspNaTechnicalUt;
+    }
+
+    public PrdeaUtSpecAlarm getPrdeaUtSpecAlarm() {
+        return this.prdeaUtSpecAlarm;
+    }
+
+    public void setPrdeaUtSpecAlarm(PrdeaUtSpecAlarm prdeaUtSpecAlarm) {
+        this.prdeaUtSpecAlarm = prdeaUtSpecAlarm;
+    }
+
+    public List<PrderUserTaskSpecMailbox> getPrderUserTaskSpecMailboxs() {
+        return this.prderUserTaskSpecMailboxs;
+    }
+
+    public void setPrderUserTaskSpecMailboxs(List<PrderUserTaskSpecMailbox> prderUserTaskSpecMailboxs) {
+        this.prderUserTaskSpecMailboxs = prderUserTaskSpecMailboxs;
+    }
+
+    public void addPrderUserTaskSpecMailboxs(PrderUserTaskSpecMailbox prderUserTaskSpecMailbox) {
+        if (this.prderUserTaskSpecMailboxs == null)
+            this.prderUserTaskSpecMailboxs = new ArrayList<PrderUserTaskSpecMailbox>();
+        this.prderUserTaskSpecMailboxs.add(prderUserTaskSpecMailbox);
+    }
+
+    public void removePrderUserTaskSpecMailboxs(PrderUserTaskSpecMailbox prderUserTaskSpecMailboxToRemove) {
+        if (prderUserTaskSpecMailboxToRemove != null)
+            this.prderUserTaskSpecMailboxs.remove(prderUserTaskSpecMailboxToRemove);
+    }
+
+    public List<ProcpUserTaskManagement> getProcpUserTaskManagements() {
+        return this.procpUserTaskManagements;
+    }
+
+    public void setProcpUserTaskManagements(List<ProcpUserTaskManagement> procpUserTaskManagements) {
+        this.procpUserTaskManagements = procpUserTaskManagements;
+    }
+
+    public void addProcpUserTaskManagements(ProcpUserTaskManagement procpUserTaskManagement) {
+        if (this.procpUserTaskManagements == null)
+            this.procpUserTaskManagements = new ArrayList<ProcpUserTaskManagement>();
+        this.procpUserTaskManagements.add(procpUserTaskManagement);
+    }
+
+    public void removeProcpUserTaskManagements(ProcpUserTaskManagement procpUserTaskManagementToRemove) {
+        if (procpUserTaskManagementToRemove != null)
+            this.procpUserTaskManagements.remove(procpUserTaskManagementToRemove);
+    }
+
+}

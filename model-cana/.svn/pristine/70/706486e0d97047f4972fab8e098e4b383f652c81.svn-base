@@ -1,0 +1,241 @@
+package com.telefonica.cana.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
+import org.eclipse.persistence.annotations.Convert;
+
+/**
+ * The persistent class for the CnalpDocumentModelS database table.
+ */
+@Entity
+@NamedQuery(name = "CnalpDocumentModel.findAll", query = "SELECT c FROM CnalpDocumentModel c")
+@Table(name = "CNALP_DOCUMENT_MODEL", uniqueConstraints = { @UniqueConstraint(columnNames = { "DOCL_ID_DOCUMENT_CLASS",
+        "DOTY_ID_DOCUMENT_TYPE" }) })
+public class CnalpDocumentModel implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Column(name = "AUDI_TI_CREATION", nullable = false)
+    private Timestamp audiTiCreation;
+
+    @Column(name = "AUDI_TI_UPDATE")
+    private Timestamp audiTiUpdate;
+
+    @Column(columnDefinition = "DATE", name = "DOMO_DA_END_VALIDITY")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date domoDaEndValidity;
+
+    @Column(columnDefinition = "DATE", name = "DOMO_DA_START_VALIDITY", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date domoDaStartValidity;
+
+    @Column(name = "DOMO_ID_DOCUMENT_MODEL", nullable = false, precision = 38, unique = true)
+    @GeneratedValue(generator = "telco-uuid")
+    @Id
+    private BigDecimal domoIdDocumentModel;
+
+    @Column(name = "DOMO_IN_CONFIGURABLE", nullable = false)
+    @Convert("BigDecimalBooleanConverter")
+    private Boolean domoInConfigurable;
+
+    @Column(name = "DOMO_IN_MANDATORY_ACCEPTANCE", nullable = false)
+    @Convert("BigDecimalBooleanConverter")
+    private Boolean domoInMandatoryAcceptance;
+
+    @Column(length = 50, name = "LDMO_NA_DOCUMENT_MODEL", nullable = false)
+    private String ldmoNaDocumentModel;
+
+    @Column(name = "USER_ID_CREATOR_PARTY", nullable = false, precision = 38)
+    private BigDecimal userIdCreatorParty;
+
+    @Column(name = "USER_ID_UPDATER_PARTY", precision = 38)
+    private BigDecimal userIdUpdaterParty;
+
+    @JoinColumn(name = "DOCL_ID_DOCUMENT_CLASS", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CnaldDocumentClass cnaldDocumentClass;
+    @JoinColumn(name = "DOTY_ID_DOCUMENT_TYPE", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CnaldDocumentType cnaldDocumentType;
+    @OneToMany(mappedBy = "cnalpDocumentModel", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrDocumentModelL> cnalrDocumentModelLs;
+    @OneToMany(mappedBy = "cnalpDocumentModel", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<CnalrTemplateModel> cnalrTemplateModels;
+
+    public Timestamp getAudiTiCreation() {
+        if (this.audiTiCreation != null)
+            return (Timestamp) this.audiTiCreation.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiCreation(Timestamp audiTiCreation) {
+        if (audiTiCreation != null)
+            this.audiTiCreation = (Timestamp) audiTiCreation.clone();
+        else
+            this.audiTiCreation = audiTiCreation;
+    }
+
+    public Timestamp getAudiTiUpdate() {
+        if (this.audiTiUpdate != null)
+            return (Timestamp) this.audiTiUpdate.clone();
+        else
+            return null;
+    }
+
+    public void setAudiTiUpdate(Timestamp audiTiUpdate) {
+        if (audiTiUpdate != null)
+            this.audiTiUpdate = (Timestamp) audiTiUpdate.clone();
+        else
+            this.audiTiUpdate = audiTiUpdate;
+    }
+
+    public Date getDomoDaEndValidity() {
+        if (this.domoDaEndValidity != null)
+            return (Date) this.domoDaEndValidity.clone();
+        else
+            return null;
+    }
+
+    public void setDomoDaEndValidity(Date domoDaEndValidity) {
+        if (domoDaEndValidity != null)
+            this.domoDaEndValidity = (Date) domoDaEndValidity.clone();
+        else
+            this.domoDaEndValidity = domoDaEndValidity;
+    }
+
+    public Date getDomoDaStartValidity() {
+        if (this.domoDaStartValidity != null)
+            return (Date) this.domoDaStartValidity.clone();
+        else
+            return null;
+    }
+
+    public void setDomoDaStartValidity(Date domoDaStartValidity) {
+        if (domoDaStartValidity != null)
+            this.domoDaStartValidity = (Date) domoDaStartValidity.clone();
+        else
+            this.domoDaStartValidity = domoDaStartValidity;
+    }
+
+    public BigDecimal getDomoIdDocumentModel() {
+        return this.domoIdDocumentModel;
+    }
+
+    public void setDomoIdDocumentModel(BigDecimal domoIdDocumentModel) {
+        this.domoIdDocumentModel = domoIdDocumentModel;
+    }
+
+    public Boolean getDomoInConfigurable() {
+        return this.domoInConfigurable;
+    }
+
+    public void setDomoInConfigurable(Boolean domoInConfigurable) {
+        this.domoInConfigurable = domoInConfigurable;
+    }
+
+    public Boolean getDomoInMandatoryAcceptance() {
+        return this.domoInMandatoryAcceptance;
+    }
+
+    public void setDomoInMandatoryAcceptance(Boolean domoInMandatoryAcceptance) {
+        this.domoInMandatoryAcceptance = domoInMandatoryAcceptance;
+    }
+
+    public String getLdmoNaDocumentModel() {
+        return this.ldmoNaDocumentModel;
+    }
+
+    public void setLdmoNaDocumentModel(String ldmoNaDocumentModel) {
+        this.ldmoNaDocumentModel = ldmoNaDocumentModel;
+    }
+
+    public BigDecimal getUserIdCreatorParty() {
+        return this.userIdCreatorParty;
+    }
+
+    public void setUserIdCreatorParty(BigDecimal userIdCreatorParty) {
+        this.userIdCreatorParty = userIdCreatorParty;
+    }
+
+    public BigDecimal getUserIdUpdaterParty() {
+        return this.userIdUpdaterParty;
+    }
+
+    public void setUserIdUpdaterParty(BigDecimal userIdUpdaterParty) {
+        this.userIdUpdaterParty = userIdUpdaterParty;
+    }
+
+    public CnaldDocumentClass getCnaldDocumentClass() {
+        return this.cnaldDocumentClass;
+    }
+
+    public void setCnaldDocumentClass(CnaldDocumentClass cnaldDocumentClass) {
+        this.cnaldDocumentClass = cnaldDocumentClass;
+    }
+
+    public CnaldDocumentType getCnaldDocumentType() {
+        return this.cnaldDocumentType;
+    }
+
+    public void setCnaldDocumentType(CnaldDocumentType cnaldDocumentType) {
+        this.cnaldDocumentType = cnaldDocumentType;
+    }
+
+    public List<CnalrDocumentModelL> getCnalrDocumentModelLs() {
+        return this.cnalrDocumentModelLs;
+    }
+
+    public void setCnalrDocumentModelLs(List<CnalrDocumentModelL> cnalrDocumentModelLs) {
+        this.cnalrDocumentModelLs = cnalrDocumentModelLs;
+    }
+
+    public void addCnalrDocumentModelLs(CnalrDocumentModelL cnalrDocumentModelL) {
+        if (this.cnalrDocumentModelLs == null)
+            this.cnalrDocumentModelLs = new ArrayList<CnalrDocumentModelL>();
+        this.cnalrDocumentModelLs.add(cnalrDocumentModelL);
+    }
+
+    public void removeCnalrDocumentModelLs(CnalrDocumentModelL cnalrDocumentModelLToRemove) {
+        if (cnalrDocumentModelLToRemove != null)
+            this.cnalrDocumentModelLs.remove(cnalrDocumentModelLToRemove);
+    }
+
+    public List<CnalrTemplateModel> getCnalrTemplateModels() {
+        return this.cnalrTemplateModels;
+    }
+
+    public void setCnalrTemplateModels(List<CnalrTemplateModel> cnalrTemplateModels) {
+        this.cnalrTemplateModels = cnalrTemplateModels;
+    }
+
+    public void addCnalrTemplateModels(CnalrTemplateModel cnalrTemplateModel) {
+        if (this.cnalrTemplateModels == null)
+            this.cnalrTemplateModels = new ArrayList<CnalrTemplateModel>();
+        this.cnalrTemplateModels.add(cnalrTemplateModel);
+    }
+
+    public void removeCnalrTemplateModels(CnalrTemplateModel cnalrTemplateModelToRemove) {
+        if (cnalrTemplateModelToRemove != null)
+            this.cnalrTemplateModels.remove(cnalrTemplateModelToRemove);
+    }
+
+}

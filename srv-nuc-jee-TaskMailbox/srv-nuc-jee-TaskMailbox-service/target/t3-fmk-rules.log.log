@@ -1,0 +1,61 @@
+10295 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+10300 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+10302 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+10306 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+10282 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+10289 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+10294 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+10298 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+12623 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12623 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12623 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+12623 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+12636 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12637 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12638 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+12638 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+12619 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12619 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12619 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+12620 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+12633 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12633 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+12633 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+12633 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+12654 [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+12647 [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+58876 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+58876 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+58876 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+58876 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+58918 [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+58950 [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+58972 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+58972 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+58973 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+58973 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+959  [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+918  [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+3073 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+3077 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+3079 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+3082 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+3858 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+3858 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+3858 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+3858 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+3866 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+3866 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+3866 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+3866 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+3877 [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+4263 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+4263 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+4264 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+4264 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 
+4318 [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+4322 [main] ERROR c.t.t.c.c.p.v.OrderMetadataValidator - El criterio de ordenación especificado:AD_findTasksMailBoxesManager_configuracion1_DSC, no está soportado por este servicio
+4337 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+4337 [main] WARN  c.t.c.l.p.EnvironmentProvider - The spring application context must be loaded in order to access the Spring Environment.
+4337 [main] ERROR c.t.t.a.w.impl.TE_API_Worklist - Metodo consultaDominios ERROR_READING_PROPERTIES Detalle: EnvironmentProvider a null en metodo consultaDominios()
+4337 [main] ERROR c.t.c.s.n.t.s.i.TaskMailboxServiceImpl - initWorklist - [ERROR_READING_PROPERTIES] [null] [null] 

@@ -1,0 +1,87 @@
+package com.telefonica.cana.dao.taskmailbox.repository;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.telefonica.cana.dao.taskmailbox.repository.extension.CnalaTaskMailboxRepositoryExtension;
+import com.telefonica.cana.model.CnalaTaskMailbox;
+
+/**
+ * The Repository interface for the entities
+ * 
+ */
+@Repository(value = "com.telefonica.cana.dao.taskmailbox.repository.CnalaTaskMailboxRepository")
+public interface CnalaTaskMailboxRepository extends JpaRepository<CnalaTaskMailbox, BigDecimal>,
+        JpaSpecificationExecutor<CnalaTaskMailbox>, CnalaTaskMailboxRepositoryExtension {
+
+    /**
+     * Método que devuelve los functionalRole asociados a los buzones pasados
+     * por parámetro
+     * 
+     * @return List<CnalaTaskMailbox>
+     * 
+     * @param List<BigDecimal>ids
+     * @param List<String>codes
+     */
+    @Query("SELECT t FROM CnalaTaskMailbox t JOIN FETCH GewfrMailboxAccess m WHERE (t.mboxIdMailbox IN :ids OR t.mboxCoFuncMailbox IN :codes) and t.mboxTiStartValidity <= CURRENT_TIMESTAMP and (t.mboxTiEndValidity IS NULL or t.mboxTiEndValidity >= CURRENT_TIMESTAMP) ORDER BY t.lboxNaMailbox ASC")
+    public List<CnalaTaskMailbox> findManagerByTaskMailbox(@Param("ids") List<BigDecimal> ids,
+            @Param("codes") List<String> codes);
+
+    /**
+     * Método que devuelve un listado de buzones en base a un listado de áreas
+     * funcionales pasadas por parámetro.
+     * 
+     * @return List<CnalaTaskMailbox>
+     * 
+     * @param List<Integer>ids
+     *            Lista de ids de las areas funcionales.
+     */
+    @Query("SELECT t FROM CnalaTaskMailbox t JOIN FETCH ScprdFunctionalArea a WHERE a.fareIdFunctionalArea IN :ids and t.mboxTiStartValidity <= CURRENT_TIMESTAMP and (t.mboxTiEndValidity IS NULL or t.mboxTiEndValidity >= CURRENT_TIMESTAMP) ORDER BY t.lboxNaMailbox ASC")
+    public List<CnalaTaskMailbox> findTaskMailboxByFunctionalArea(@Param("ids") List<Integer> ids);
+
+    /**
+     * Método que devuelve los buzones asociados a un OrganizationRole
+     * 
+     * @return Slice<CnalaTaskMailbox>
+     * 
+     * @param BigDecimal
+     *            idOrganizationRole Id de la entidad OrganizationRole
+     * @param Pageable
+     *            page Parámetro para la paginación El objeto Pagebale contiene
+     *            el criterio de ordenacion
+     */
+    @Query("SELECT t FROM CnalaTaskMailbox t JOIN FETCH GewfrMailboxAccess a JOIN FETCH CnalpFunctionalPool f WHERE t.cnalrOrgaPoolAssignment2.paroIdOrganizationRole = :idOrganizationRole AND t.mboxTiStartValidity <= CURRENT_TIMESTAMP and (t.mboxTiEndValidity IS NULL or t.mboxTiEndValidity >= CURRENT_TIMESTAMP)")
+    public Slice<CnalaTaskMailbox> findTasksMailboxesManager(@Param("idOrganizationRole") BigDecimal idOrganizationRole,
+            Pageable page);
+
+    /**
+     * Método que devuelve los buzones asociados a un FunctionalRole
+     * @return 	Slice<CnalaTaskMailbox>
+     
+     * @param BigDecimal paroIdFunctionalRole  Id de la entidad FunctionalRole
+     * @param Pageable page  Parámetro para la paginación
+     */
+    @Query("SELECT t FROM CnalaTaskMailbox t JOIN FETCH GewfrMailboxAccess a on t.mboxIdMailbox = a.cnalaTaskMailbox.mboxIdMailbox JOIN FETCH CnalpFunctionalPool f WHERE a.paroIdFunctionalRole = :paroIdFunctionalRole AND t.mboxTiStartValidity <= CURRENT_TIMESTAMP and (t.mboxTiEndValidity IS NULL or t.mboxTiEndValidity >= CURRENT_TIMESTAMP)")
+    public Slice<CnalaTaskMailbox> findTasksMailboxesManagerbyIdFuncRole(
+            @Param("paroIdFunctionalRole") BigDecimal paroIdFunctionalRole, Pageable page);
+
+    /**
+     * Método que devuelve los buzones asociados a una lista de FunctionalRole
+     * @return 	Slice<CnalaTaskMailbox>
+     
+     * @param List<BigDecimal>listParoIdFunctionalRole  Lista de Ids de Functiona Role
+     * @param Pageable page  Parámetro para la paginación
+     */
+    @Query("SELECT t FROM CnalaTaskMailbox t JOIN FETCH GewfrMailboxAccess a on t.mboxIdMailbox = a.cnalaTaskMailbox.mboxIdMailbox JOIN FETCH CnalpFunctionalPool f WHERE a.paroIdFunctionalRole in :listParoIdFunctionalRole AND t.mboxTiStartValidity <= CURRENT_TIMESTAMP and (t.mboxTiEndValidity IS NULL or t.mboxTiEndValidity >= CURRENT_TIMESTAMP) AND (a.maacInMailboxAccess = TRUE OR a.maacInMailboxResponsible = TRUE)")
+    public Page<CnalaTaskMailbox> findTasksMailboxesManagerbyListIdFuncRole(
+            @Param("listParoIdFunctionalRole") List <BigDecimal> listParoIdFunctionalRole, Pageable page);
+}

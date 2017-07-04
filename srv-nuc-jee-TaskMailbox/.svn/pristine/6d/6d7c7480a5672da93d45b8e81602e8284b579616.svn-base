@@ -1,0 +1,7 @@
+srv-nuc-jee-TaskMailbox_Binding.path=/mocksrv-nuc-jee-TaskMailbox_Binding
+server.hostname.nuc=
+server.listen.port.nuc=
+driver_bbdd=oracle.jdbc.driver.OracleDriver
+url_bbdd=jdbc:oracle:thin:@//enhol01v-scan.serv.test.dc.es.telefonica:50001/DTLCO1
+user_online_bbdd=UOD_CNALES2
+pass_bbdd=temporal1

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version 3.0 de la capacidad OP_getLanguageHeader -->
+<!-- Generated with GenerarXSD v5.0 -->
+<xsd:schema 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:xsd_1="http://telefonica.com/cana/srv/CommonUtilities/msg/getLanguagesHeader-v3"
+targetNamespace="http://telefonica.com/cana/srv/CommonUtilities/msg/getLanguagesHeader-v3" elementFormDefault="qualified">
+
+ <xsd:complexType name="GetLanguagesHeader_OUT">
+     <xsd:sequence>
+      <xsd:element name="Idiomas" type="xsd:integer" minOccurs="1" maxOccurs="unbounded" />
+     </xsd:sequence>
+ </xsd:complexType>
+ <xsd:element name="GetLanguagesHeader_OUT" type="xsd_1:GetLanguagesHeader_OUT" />
+
+ <xsd:complexType name="GetLanguagesHeader_IN">
+ </xsd:complexType>
+ <xsd:element name="GetLanguagesHeader_IN" type="xsd_1:GetLanguagesHeader_IN" />
+</xsd:schema>
+
